@@ -5,14 +5,13 @@
      • Data JS modules             → included in shell cache (loaded as JS)
      • Images                       → cache-first with runtime caching
    ========================================================================== */
-const VERSION = 'pshop-v1.2.0';
+const VERSION = 'pshop-v1.3.0';
 const SHELL_CACHE = `${VERSION}-shell`;
 const IMG_CACHE   = `${VERSION}-img`;
 
 const SHELL_ASSETS = [
   './',
   './index.html',
-  './manifest.webmanifest',
   './assets/css/main.css',
   './assets/css/pages/home.css',
   './assets/js/core/app.js',
