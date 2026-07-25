@@ -1,0 +1,52 @@
+[
+ {
+  "code": "PSHOP10",
+  "type": "percent",
+  "value": 10,
+  "minOrder": 999,
+  "maxDiscount": 300,
+  "expiry": "2026-12-31",
+  "active": true,
+  "description": "10% off on orders above \u20b9999"
+ },
+ {
+  "code": "FLAT200",
+  "type": "flat",
+  "value": 200,
+  "minOrder": 1499,
+  "maxDiscount": 200,
+  "expiry": "2026-12-31",
+  "active": true,
+  "description": "Flat \u20b9200 off above \u20b91499"
+ },
+ {
+  "code": "NEWUSER",
+  "type": "percent",
+  "value": 15,
+  "minOrder": 499,
+  "maxDiscount": 500,
+  "expiry": "2026-12-31",
+  "active": true,
+  "description": "15% off for first order"
+ },
+ {
+  "code": "FREESHIP",
+  "type": "shipping",
+  "value": 0,
+  "minOrder": 0,
+  "maxDiscount": 79,
+  "expiry": "2026-12-31",
+  "active": true,
+  "description": "Free delivery on any order"
+ },
+ {
+  "code": "BIGSAVE50",
+  "type": "percent",
+  "value": 50,
+  "minOrder": 4999,
+  "maxDiscount": 1500,
+  "expiry": "2026-10-31",
+  "active": true,
+  "description": "50% off above \u20b94999 (max \u20b91500)"
+ }
+]

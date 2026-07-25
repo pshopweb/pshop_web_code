@@ -1,0 +1,43 @@
+{
+  "exportedAt": "2026-07-24T23:37:40.016Z",
+  "profile": {
+    "id": "UMRZKTMP67FML",
+    "name": "piyush kumar",
+    "email": "piyushkumar9572yadav@gmail.com",
+    "phone": "8298799319",
+    "gender": "",
+    "dob": "",
+    "avatar": "",
+    "role": "customer",
+    "createdAt": "2026-07-24T23:33:44.106Z",
+    "verified": false
+  },
+  "settings": {
+    "emailOffers": true,
+    "smsAlerts": true,
+    "pushOrders": true,
+    "newsletter": true,
+    "language": "en-IN",
+    "currency": "INR",
+    "compactCards": true,
+    "saveHistory": true
+  },
+  "addresses": [
+    {
+      "name": "piyush kumar",
+      "phone": "8298799319",
+      "pin": "805110",
+      "city": "nawada",
+      "state": "Bihar",
+      "line1": "alkdfw=-e",
+      "landmark": "shiv mindir rajandar nagar",
+      "type": "Home",
+      "isDefault": true,
+      "id": "ADRMRZKVKDHYJ92",
+      "createdAt": "2026-07-24T23:35:14.405Z"
+    }
+  ],
+  "cart": [],
+  "wishlist": [],
+  "orders": []
+}

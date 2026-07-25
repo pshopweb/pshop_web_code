@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PShop - My Orders</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/orders.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-store"></i><span>PShop</span>
+                </a>
+                <nav class="nav">
+                    <a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                    <a href="cart.html" class="nav-link cart-link">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                    <a href="orders.html" class="nav-link active"><i class="fas fa-box"></i> Orders</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1><i class="fas fa-box"></i> My Orders</h1>
+            </div>
+
+            <!-- Order Filters -->
+            <div class="order-filters">
+                <button class="filter-btn active" data-status="all">All Orders</button>
+                <button class="filter-btn" data-status="pending">Pending</button>
+                <button class="filter-btn" data-status="processing">Processing</button>
+                <button class="filter-btn" data-status="shipped">Shipped</button>
+                <button class="filter-btn" data-status="delivered">Delivered</button>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyOrders" style="display:none;">
+                <i class="fas fa-box-open"></i>
+                <h2>No orders yet</h2>
+                <p>Start shopping to see your orders here</p>
+                <a href="../index.html" class="btn btn-primary">
+                    <i class="fas fa-shopping-bag"></i> Start Shopping
+                </a>
+            </div>
+
+            <!-- Orders List -->
+            <div class="orders-list" id="ordersList">
+                <!-- Orders loaded dynamically -->
+            </div>
+
+            <div class="loading-spinner" id="loadingSpinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading orders...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Order Detail Modal -->
+    <div class="modal" id="orderDetailModal">
+        <div class="modal-content modal-lg">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2>Order Details</h2>
+            <div id="orderDetailContent"></div>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/orders.js"></script>
+</body>
+
+</html>

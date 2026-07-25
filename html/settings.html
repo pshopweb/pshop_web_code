@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PShop - Settings</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/settings.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-store"></i><span>PShop</span>
+                </a>
+                <nav class="nav">
+                    <a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                    <a href="cart.html" class="nav-link cart-link">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                    <a href="settings.html" class="nav-link active"><i class="fas fa-cog"></i> Settings</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="profile-layout">
+                <aside class="profile-sidebar">
+                    <div class="profile-avatar">
+                        <div class="avatar"><i class="fas fa-user"></i></div>
+                        <h3 id="profileName">User</h3>
+                    </div>
+                    <nav class="profile-nav">
+                        <a href="profile.html"><i class="fas fa-user-circle"></i> Profile</a>
+                        <a href="orders.html"><i class="fas fa-box"></i> My Orders</a>
+                        <a href="messages.html"><i class="fas fa-envelope"></i> Messages</a>
+                        <a href="settings.html" class="active"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </nav>
+                </aside>
+
+                <div class="profile-content">
+                    <div class="content-header">
+                        <h2>Settings</h2>
+                    </div>
+
+                    <!-- Change Password -->
+                    <div class="settings-card">
+                        <h3><i class="fas fa-lock"></i> Change Password</h3>
+                        <form id="changePasswordForm">
+                            <div class="form-group">
+                                <label>Current Password</label>
+                                <input type="password" id="currentPassword" placeholder="Enter current password"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label>New Password</label>
+                                <input type="password" id="newPassword" placeholder="Enter new password" required
+                                    minlength="6">
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm New Password</label>
+                                <input type="password" id="confirmNewPassword" placeholder="Confirm new password"
+                                    required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Update Password
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Notification Settings -->
+                    <div class="settings-card">
+                        <h3><i class="fas fa-bell"></i> Notifications</h3>
+                        <div class="settings-options">
+                            <div class="setting-item">
+                                <div>
+                                    <h4>Email Notifications</h4>
+                                    <p>Receive order updates via email</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="emailNotif" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <div>
+                                    <h4>Marketing Emails</h4>
+                                    <p>Receive promotional offers and deals</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="marketingNotif">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <div>
+                                    <h4>SMS Notifications</h4>
+                                    <p>Receive order updates via SMS</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="smsNotif">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Theme Settings -->
+                    <div class="settings-card">
+                        <h3><i class="fas fa-palette"></i> Appearance</h3>
+                        <div class="settings-options">
+                            <div class="setting-item">
+                                <div>
+                                    <h4>Dark Mode</h4>
+                                    <p>Switch to dark theme</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="darkMode">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Danger Zone -->
+                    <div class="settings-card danger-zone">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Danger Zone</h3>
+                        <div class="danger-content">
+                            <div>
+                                <h4>Delete Account</h4>
+                                <p>Permanently delete your account and all data</p>
+                            </div>
+                            <button class="btn btn-danger" id="deleteAccountBtn">
+                                <i class="fas fa-trash"></i> Delete Account
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/settings.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PShop - My Profile</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-store"></i><span>PShop</span>
+                </a>
+                <nav class="nav">
+                    <a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                    <a href="cart.html" class="nav-link cart-link">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                    <a href="profile.html" class="nav-link active"><i class="fas fa-user"></i> Profile</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="profile-layout">
+                <!-- Sidebar -->
+                <aside class="profile-sidebar">
+                    <div class="profile-avatar">
+                        <div class="avatar" id="userAvatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3 id="profileName">User</h3>
+                        <p id="profileEmail">user@example.com</p>
+                    </div>
+                    <nav class="profile-nav">
+                        <a href="profile.html" class="active"><i class="fas fa-user-circle"></i> Profile</a>
+                        <a href="orders.html"><i class="fas fa-box"></i> My Orders</a>
+                        <a href="messages.html"><i class="fas fa-envelope"></i> Messages</a>
+                        <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </nav>
+                </aside>
+
+                <!-- Profile Content -->
+                <div class="profile-content">
+                    <div class="content-header">
+                        <h2>My Profile</h2>
+                        <button class="btn btn-outline" id="editProfileBtn">
+                            <i class="fas fa-edit"></i> Edit Profile
+                        </button>
+                    </div>
+
+                    <!-- Profile Info -->
+                    <div class="profile-info-card" id="profileInfo">
+                        <div class="info-row">
+                            <div class="info-item">
+                                <label>Full Name</label>
+                                <p id="displayName">-</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Email</label>
+                                <p id="displayEmail">-</p>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-item">
+                                <label>Phone</label>
+                                <p id="displayPhone">-</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Member Since</label>
+                                <p id="displayJoined">-</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <label>Address</label>
+                            <p id="displayAddress">-</p>
+                        </div>
+                    </div>
+
+                    <!-- Edit Form (Hidden) -->
+                    <form class="profile-edit-form" id="profileEditForm" style="display:none;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" id="editFirstName" placeholder="First name">
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" id="editLastName" placeholder="Last name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="tel" id="editPhone" placeholder="Phone number">
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <textarea id="editAddress" placeholder="Your address" rows="3"></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-outline" id="cancelEditBtn">Cancel</button>
+                            <button type="submit" class="btn btn-primary" id="saveProfileBtn">
+                                <i class="fas fa-save"></i> Save Changes
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Stats -->
+                    <div class="profile-stats">
+                        <div class="stat-card">
+                            <i class="fas fa-shopping-bag"></i>
+                            <h3 id="totalOrders">0</h3>
+                            <p>Total Orders</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-heart"></i>
+                            <h3 id="wishlistCount">0</h3>
+                            <p>Wishlist</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-star"></i>
+                            <h3 id="reviewsCount">0</h3>
+                            <p>Reviews</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/profile.js"></script>
+</body>
+
+</html>

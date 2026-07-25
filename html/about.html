@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PShop - About Us</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, var(--primary), #0056b3);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .about-hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-section {
+            padding: 60px 0;
+        }
+
+        .about-section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            margin-bottom: 16px;
+            color: #333;
+        }
+
+        .about-text p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .team-card {
+            text-align: center;
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .team-card .avatar {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .team-card h3 {
+            margin-bottom: 4px;
+        }
+
+        .team-card p {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 24px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .value-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .value-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .value-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .faq-section {
+            padding: 60px 0;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px;
+            color: #666;
+            line-height: 1.7;
+            display: none;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        .faq-item.open .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-store"></i><span>PShop</span>
+                </a>
+                <nav class="nav">
+                    <a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                    <a href="about.html" class="nav-link active"><i class="fas fa-info-circle"></i> About</a>
+                    <a href="cart.html" class="nav-link cart-link">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>About PShop</h1>
+            <p>We're on a mission to make online shopping accessible, affordable, and enjoyable for everyone.</p>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2>Our Story</h2>
+                    <p>PShop was founded with a simple idea: everyone deserves access to quality products at fair
+                        prices. What started as a small project has grown into a thriving e-commerce platform serving
+                        customers worldwide.</p>
+                    <p>We believe in transparency, quality, and customer satisfaction. Every product in our catalog is
+                        carefully selected to ensure it meets our high standards.</p>
+                    <p>Our team works tirelessly to bring you the best shopping experience, from browsing to delivery.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <img src="../assets/images/banner1.jpg" alt="About PShop">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values -->
+    <section class="about-section">
+        <div class="container">
+            <h2 style="text-align:center; margin-bottom:40px;">Our Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Customer First</h3>
+                    <p>Every decision we make starts with our customers in mind.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Trust & Safety</h3>
+                    <p>We ensure secure transactions and protect your data.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Sustainability</h3>
+                    <p>We're committed to eco-friendly practices.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Innovation</h3>
+                    <p>Continuously improving to serve you better.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="about-section">
+        <div class="container">
+            <h2 style="text-align:center; margin-bottom:40px;">Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="avatar"><i class="fas fa-user"></i></div>
+                    <h3>Sarah Johnson</h3>
+                    <p>Founder & CEO</p>
+                </div>
+                <div class="team-card">
+                    <div class="avatar"><i class="fas fa-user"></i></div>
+                    <h3>Mike Chen</h3>
+                    <p>CTO</p>
+                </div>
+                <div class="team-card">
+                    <div class="avatar"><i class="fas fa-user"></i></div>
+                    <h3>Emily Davis</h3>
+                    <p>Head of Design</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 style="text-align:center; margin-bottom:40px;">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">How do I track my order? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">You can track your order by logging into your account and visiting the "My
+                        Orders" page. You'll find tracking information for each order.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What is your return policy? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">We offer a 30-day return policy on most items. Items must be in their
+                        original condition. Contact our support team to initiate a return.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do you ship internationally? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Yes! We ship to most countries worldwide. Shipping costs and delivery times
+                        vary by location. Check our shipping page for details.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How can I contact support? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">You can reach us through the Messages page in your account, or email us at
+                        support@pshop.com. We respond within 24 hours.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 PShop. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/utils.js"></script>
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                q.parentElement.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+
+</html>
