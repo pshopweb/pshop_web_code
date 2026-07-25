@@ -1,20 +1,19 @@
 /* ==========================================================================
    PShop — Mock backend
-   Mirrors every Apps Script endpoint using seed JSON + localStorage so the
-   frontend is fully functional without a deployed backend. The API layer
+   Mirrors every Apps Script endpoint using seed JS modules + localStorage so
+   the frontend is fully functional without a deployed backend. The API layer
    automatically routes here when CONFIG.API_BASE_URL is empty or fails.
    ========================================================================== */
 import { CONFIG, url } from './config.js';
 import { Store } from './storage.js';
 import { uid, sleep, addDays, hashCode, V } from './utils.js';
 
-/* ------------------------ seed data (cached fetch) ------------------------ */
+/* ------------------------ seed data (JS modules) ------------------------- */
 const cache = {};
 async function seed(name) {
   if (cache[name]) return cache[name];
-  const res = await fetch(url(`assets/data/${name}.json`), { cache: 'force-cache' });
-  if (!res.ok) throw new Error(`Seed "${name}" unavailable`);
-  cache[name] = await res.json();
+  const mod = await import(url(`assets/data/${name}.js`));
+  cache[name] = mod.default;
   return cache[name];
 }
 

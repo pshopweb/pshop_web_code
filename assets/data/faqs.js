@@ -1,4 +1,4 @@
-[
+export default [
  {
   "category": "Orders",
   "question": "How do I place an order on PShop?",
@@ -74,4 +74,4 @@
   "question": "How do I compare products?",
   "answer": "Click the compare icon on any product card. You can compare up to 4 products side by side including price, rating, brand and specifications."
  }
-]
+];

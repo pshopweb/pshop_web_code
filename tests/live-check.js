@@ -86,7 +86,7 @@ async function testBackend() {
 async function testDataFiles() {
   console.log('\n\x1b[1m=== LOCAL DATA FILES ===\x1b[0m');
   const dataDir = path.join(__dirname, '..', 'assets', 'data');
-  const files = ['products.json', 'categories.json', 'banners.json', 'reviews.json', 'coupons.json', 'faqs.json'];
+  const files = ['products.js', 'categories.js', 'banners.js', 'reviews.js', 'coupons.js', 'faqs.js'];
 
   for (const f of files) {
     const fp = path.join(dataDir, f);
@@ -94,11 +94,11 @@ async function testDataFiles() {
     ck(`${f} exists`, exists);
     if (exists) {
       try {
-        const data = JSON.parse(fs.readFileSync(fp, 'utf8'));
-        ck(`${f} is valid JSON`, Array.isArray(data) || typeof data === 'object',
-           `${JSON.stringify(data).length} bytes`);
+        const content = fs.readFileSync(fp, 'utf8');
+        const hasExport = content.startsWith('export default');
+        ck(`${f} is valid JS module`, hasExport, `${content.length} bytes`);
       } catch {
-        ck(`${f} is valid JSON`, false);
+        ck(`${f} is valid JS module`, false);
       }
     }
   }

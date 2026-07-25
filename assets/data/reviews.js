@@ -1,4 +1,4 @@
-[
+export default [
  {
   "id": "R0001",
   "productId": "P0092",
@@ -2579,4 +2579,4 @@
   "helpful": 29,
   "status": "approved"
  }
-]
+];

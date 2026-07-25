@@ -1,4 +1,4 @@
-[
+export default [
  {
   "id": "c1",
   "name": "Electronics",
@@ -207,4 +207,4 @@
   ],
   "productCount": 12
  }
-]
+];

@@ -1,4 +1,4 @@
-[
+export default [
  {
   "code": "PSHOP10",
   "type": "percent",
@@ -49,4 +49,4 @@
   "active": true,
   "description": "50% off above \u20b94999 (max \u20b91500)"
  }
-]
+];

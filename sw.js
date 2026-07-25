@@ -2,13 +2,11 @@
    PShop — Service Worker
    Strategy:
      • App shell (HTML/CSS/JS/icons) → stale-while-revalidate
-     • Seed JSON data               → stale-while-revalidate (cache first,
-                                      refresh in background for instant load)
+     • Data JS modules             → included in shell cache (loaded as JS)
      • Images                       → cache-first with runtime caching
    ========================================================================== */
-const VERSION = 'pshop-v1.1.0';
+const VERSION = 'pshop-v1.2.0';
 const SHELL_CACHE = `${VERSION}-shell`;
-const DATA_CACHE  = `${VERSION}-data`;
 const IMG_CACHE   = `${VERSION}-img`;
 
 const SHELL_ASSETS = [
@@ -19,26 +17,18 @@ const SHELL_ASSETS = [
   './assets/css/pages/home.css',
   './assets/js/core/app.js',
   './assets/js/pages/home.js',
+  './assets/data/products.js',
+  './assets/data/categories.js',
+  './assets/data/banners.js',
   './assets/img/icons/logo.svg',
   './assets/img/icons/favicon.svg',
   './assets/img/misc/placeholder.svg'
-];
-
-const DATA_ASSETS = [
-  './assets/data/products.json',
-  './assets/data/categories.json',
-  './assets/data/banners.json',
-  './assets/data/reviews.json',
-  './assets/data/coupons.json',
-  './assets/data/faqs.json'
 ];
 
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(SHELL_CACHE)
       .then(c => c.addAll(SHELL_ASSETS).catch(() => {/* tolerate a missing optional asset */}))
-      .then(() => caches.open(DATA_CACHE))
-      .then(c => c.addAll(DATA_ASSETS).catch(() => {}))
       .then(() => self.skipWaiting())
   );
 });
@@ -57,20 +47,6 @@ self.addEventListener('fetch', event => {
 
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;   // let CDN/font requests pass through
-
-  // Seed data — stale-while-revalidate: serve cache instantly, refresh in background.
-  if (url.pathname.includes('/assets/data/')) {
-    event.respondWith(
-      caches.match(request).then(cached => {
-        const network = fetch(request).then(res => {
-          caches.open(DATA_CACHE).then(c => c.put(request, res.clone()));
-          return res;
-        }).catch(() => cached);
-        return cached || network;
-      })
-    );
-    return;
-  }
 
   // Images — cache first.
   if (request.destination === 'image') {

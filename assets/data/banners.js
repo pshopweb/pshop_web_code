@@ -1,4 +1,4 @@
-[
+export default [
  {
   "id": "b1",
   "title": "Monsoon Mega Sale",
@@ -35,4 +35,4 @@
   "image": "assets/img/banners/banner-4.svg",
   "theme": "#047857"
  }
-]
+];
