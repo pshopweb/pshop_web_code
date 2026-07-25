@@ -97,11 +97,25 @@
     }
 
     .products-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .product-card .product-image {
+        height: 120px;
+    }
+
+    .product-card .product-name {
+        font-size: 0.85rem;
+    }
+
+    .product-card .product-price {
+        font-size: 0.9rem;
     }
 
     .categories-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
     }
 
     .features-grid {
@@ -109,20 +123,51 @@
     }
 
     .banner-slide img {
-        height: 250px;
+        height: 200px;
     }
 
     .banner-content h2 {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
 
     .btn {
+        min-height: 44px;
         padding: 10px 20px;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 
     .btn-lg {
         padding: 14px 24px;
-        font-size: 1rem;
+        font-size: 0.95rem;
+    }
+
+    .section-title {
+        font-size: 1.1rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header {
+        padding: 0.5rem;
+    }
+
+    .logo img {
+        height: 30px;
+    }
+}
+
+@media (max-width: 360px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .container {
+        padding: 0 12px;
     }
 }

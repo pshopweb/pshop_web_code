@@ -17,6 +17,18 @@ import { toast } from '../components/toast.js';
 const cache = new Map();
 const remember = list => { list.forEach(p => cache.set(p.id, p)); return list; };
 
+/** Shared promise for "all products" — avoids duplicate fetches for brands & recommendations. */
+let _allProductsPromise = null;
+function getAllProducts() {
+  if (!_allProductsPromise) {
+    _allProductsPromise = API.getProducts({ all: true }).then(res => {
+      if (res.success) { remember(res.data.items); return res.data.items; }
+      return [];
+    });
+  }
+  return _allProductsPromise;
+}
+
 page(async () => {
   await initApp({ page: 'index', nav: 'home', getProduct: id => cache.get(id) });
 
@@ -30,7 +42,7 @@ page(async () => {
   renderUSP();
   startCountdown();
 
-  // Everything loads in parallel.
+  // Everything loads in parallel — brands & recommended share a single "all products" cache.
   await Promise.all([
     loadHero(),
     loadCategories(),
@@ -157,11 +169,11 @@ async function loadRecommended() {
   const recent = Recent.all();
   let items = [];
   if (recent.length) {
-    const res = await API.getProducts({ all: true });
-    if (res.success) {
+    const allItems = await getAllProducts();
+    if (allItems.length) {
       const seen = new Set(recent.map(r => r.id));
       const brands = unique(recent.map(r => r.brand));
-      items = res.data.items
+      items = allItems
         .filter(p => !seen.has(p.id))
         .map(p => ({ p, s: (brands.includes(p.brand) ? 3 : 0) + p.rating / 2 + (p.discount / 40) }))
         .sort((a, b) => b.s - a.s).slice(0, 12).map(x => x.p);
@@ -169,7 +181,7 @@ async function loadRecommended() {
   }
   if (!items.length) {
     const res = await API.getProducts({ tag: 'recommended', pageSize: 12, sort: 'rating' });
-    if (res.success) items = res.data.items;
+    if (res.success) items = remember(res.data.items);
   }
   renderProducts($('#rec-grid'), remember(items));
 }
@@ -189,9 +201,9 @@ function loadRecent() {
 }
 
 async function loadBrands() {
-  const res = await API.getProducts({ all: true });
-  if (!res.success) return;
-  const brands = unique(res.data.items.map(p => p.brand)).slice(0, 12);
+  const allItems = await getAllProducts();
+  if (!allItems.length) return;
+  const brands = unique(allItems.map(p => p.brand)).slice(0, 12);
   $('#brand-row').innerHTML = brands.slice(0, 6).map(b =>
     `<a class="brand-chip" href="${url('pages/search.html?q=' + encodeURIComponent(b))}">${esc(b)}</a>`).join('');
 }

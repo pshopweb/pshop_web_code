@@ -918,3 +918,125 @@ img {
 .text-muted {
     color: var(--text-muted);
 }
+
+/* =========================== RESPONSIVE ================================ */
+
+/* Touch-friendly targets for all touch devices */
+@media (hover: none) {
+    .btn, .nav-link, .filter-btn, .mobile-nav a {
+        min-height: 44px;
+    }
+    .product-card:hover {
+        transform: none;
+    }
+}
+
+/* Tablets & small desktops */
+@media (max-width: 1024px) {
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .categories-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Tablets & large phones */
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    .categories-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+    .banner-slide {
+        min-height: 180px;
+    }
+    .hero-section {
+        padding: 1rem 0;
+    }
+    .search-bar {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .nav-menu {
+        display: none;
+    }
+    .mobile-menu-btn {
+        display: block;
+    }
+    .header-actions {
+        gap: 0.5rem;
+    }
+    .feature-card {
+        padding: 1rem;
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    .product-card .product-image {
+        height: 120px;
+    }
+    .product-card .product-name {
+        font-size: 0.85rem;
+    }
+    .product-card .product-price {
+        font-size: 0.9rem;
+    }
+    .categories-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+    .category-card {
+        padding: 0.6rem;
+    }
+    .category-card img {
+        width: 40px;
+        height: 40px;
+    }
+    .banner-slide {
+        min-height: 140px;
+    }
+    .section-title {
+        font-size: 1.1rem;
+    }
+    .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+    .header {
+        padding: 0.5rem;
+    }
+    .logo img {
+        height: 30px;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .container {
+        padding: 0 0.75rem;
+    }
+}
