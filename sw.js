@@ -2,10 +2,11 @@
    PShop — Service Worker
    Strategy:
      • App shell (HTML/CSS/JS/icons) → stale-while-revalidate
-     • Seed JSON data               → network-first with cache fallback
+     • Seed JSON data               → stale-while-revalidate (cache first,
+                                      refresh in background for instant load)
      • Images                       → cache-first with runtime caching
    ========================================================================== */
-const VERSION = 'pshop-v1.0.0';
+const VERSION = 'pshop-v1.1.0';
 const SHELL_CACHE = `${VERSION}-shell`;
 const DATA_CACHE  = `${VERSION}-data`;
 const IMG_CACHE   = `${VERSION}-img`;
@@ -13,19 +14,31 @@ const IMG_CACHE   = `${VERSION}-img`;
 const SHELL_ASSETS = [
   './',
   './index.html',
-  './offline.html',
   './manifest.webmanifest',
   './assets/css/main.css',
+  './assets/css/pages/home.css',
   './assets/js/core/app.js',
+  './assets/js/pages/home.js',
   './assets/img/icons/logo.svg',
   './assets/img/icons/favicon.svg',
   './assets/img/misc/placeholder.svg'
+];
+
+const DATA_ASSETS = [
+  './assets/data/products.json',
+  './assets/data/categories.json',
+  './assets/data/banners.json',
+  './assets/data/reviews.json',
+  './assets/data/coupons.json',
+  './assets/data/faqs.json'
 ];
 
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(SHELL_CACHE)
       .then(c => c.addAll(SHELL_ASSETS).catch(() => {/* tolerate a missing optional asset */}))
+      .then(() => caches.open(DATA_CACHE))
+      .then(c => c.addAll(DATA_ASSETS).catch(() => {}))
       .then(() => self.skipWaiting())
   );
 });
@@ -45,12 +58,16 @@ self.addEventListener('fetch', event => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;   // let CDN/font requests pass through
 
-  // Seed data — always try the network so prices stay fresh.
+  // Seed data — stale-while-revalidate: serve cache instantly, refresh in background.
   if (url.pathname.includes('/assets/data/')) {
     event.respondWith(
-      fetch(request)
-        .then(res => { caches.open(DATA_CACHE).then(c => c.put(request, res.clone())); return res; })
-        .catch(() => caches.match(request))
+      caches.match(request).then(cached => {
+        const network = fetch(request).then(res => {
+          caches.open(DATA_CACHE).then(c => c.put(request, res.clone()));
+          return res;
+        }).catch(() => cached);
+        return cached || network;
+      })
     );
     return;
   }
@@ -66,12 +83,12 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Navigations — network first so users get fresh HTML, offline page as fallback.
+  // Navigations — network first so users get fresh HTML, cache as fallback.
   if (request.mode === 'navigate') {
     event.respondWith(
       fetch(request)
         .then(res => { caches.open(SHELL_CACHE).then(c => c.put(request, res.clone())); return res; })
-        .catch(() => caches.match(request).then(hit => hit || caches.match('./offline.html')))
+        .catch(() => caches.match(request).then(hit => hit || caches.match('./index.html')))
     );
     return;
   }

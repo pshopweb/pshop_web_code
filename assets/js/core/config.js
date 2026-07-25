@@ -22,7 +22,7 @@ export const CONFIG = Object.freeze({
   API_BASE_URL: 'https://script.google.com/macros/s/AKfycbxoXbHd5wLLpSF0GppqGpqLVyU2yv547Lu4knDFNJbxgnwXuvTsOck8lsxIk7aWLONV/exec',
   /* ⬆⬆⬆  Khaali chhoda to website demo data par chalegi (kuch tootega nahi) ⬆⬆⬆ */
 
-  API_TIMEOUT: 15000,
+  API_TIMEOUT: 6000,
   // true = backend band/slow ho to site demo data par chalti rahegi
   USE_MOCK_FALLBACK: true,
 
