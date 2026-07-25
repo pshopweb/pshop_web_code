@@ -5,7 +5,7 @@
      • Data JS modules             → included in shell cache (loaded as JS)
      • Images                       → cache-first with runtime caching
    ========================================================================== */
-const VERSION = 'pshop-v1.3.0';
+const VERSION = 'pshop-v1.3.1';
 const SHELL_CACHE = `${VERSION}-shell`;
 const IMG_CACHE   = `${VERSION}-img`;
 
@@ -51,7 +51,8 @@ self.addEventListener('fetch', event => {
   if (request.destination === 'image') {
     event.respondWith(
       caches.match(request).then(hit => hit || fetch(request).then(res => {
-        caches.open(IMG_CACHE).then(c => c.put(request, res.clone()));
+        const copy = res.clone();
+        caches.open(IMG_CACHE).then(c => c.put(request, copy));
         return res;
       }).catch(() => caches.match('./assets/img/misc/placeholder.svg')))
     );
@@ -62,7 +63,7 @@ self.addEventListener('fetch', event => {
   if (request.mode === 'navigate') {
     event.respondWith(
       fetch(request)
-        .then(res => { caches.open(SHELL_CACHE).then(c => c.put(request, res.clone())); return res; })
+        .then(res => { const copy = res.clone(); caches.open(SHELL_CACHE).then(c => c.put(request, copy)); return res; })
         .catch(() => caches.match(request).then(hit => hit || caches.match('./index.html')))
     );
     return;
@@ -72,7 +73,8 @@ self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(request).then(hit => {
       const network = fetch(request).then(res => {
-        caches.open(SHELL_CACHE).then(c => c.put(request, res.clone()));
+        const copy = res.clone();
+        caches.open(SHELL_CACHE).then(c => c.put(request, copy));
         return res;
       }).catch(() => hit);
       return hit || network;
